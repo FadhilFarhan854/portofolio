@@ -1,103 +1,185 @@
-import Image from "next/image";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @next/next/no-img-element */
+"use client"
+import { useState, useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInstagram, faLinkedin, faWhatsapp,  faGithub } from '@fortawesome/free-brands-svg-icons'
+import Skills from './components/skillsection';
+import ChatbotUI from './components/chatbotsection';
+
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [activeTab, setActiveTab] = useState('about');
+  
+  const circles = [
+    { // Kiri atas
+      size: '300px',
+      right: '10%',
+      top: '10%',
+      blur: '40px',
+      opacity: 0.3,
+      bg: 'hsla(165, 97%, 48%, 1.00)'
+    },
+    { // Kanan atas
+      size: '300px',
+      left: '30%',
+      top: '20%',
+      blur: '35px',
+      opacity: 0.25,
+      bg: 'hsla(227, 64%, 62%, 1.00)'
+    },
+    { // Kiri bawah
+      size: '300px',
+      left: '10%',
+      top: '30%',
+      blur: '45px',
+      opacity: 0.35,
+      bg: 'hsl(185, 100%, 57%)'
+    }
+  ];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+  // Konten untuk masing-masing tab
+  const tabContents = {
+    about: (
+      <div className="p-6 text-white ">
+        <h2 className="text-lg md:text-2xl font-bold mb-4">About Me</h2>
+        <p className='mb-5'>My name is Fadhilah Muhammad Farhan. I graduated from Telkom University as diploma of Software engineering. now i study for my bachelor degree at Telkom Univeristy too. I spesialized on fullstack web developer. I am available to work because I am currently attending classes under an employee-class schedule, so it will not interfere with my working hours. you can ccontact me on my social media below:
+        </p>
+        <div className="group w-[70%] text-2xl h-10 flex justify-between border-2 mb-5">
+          <a href='https://www.instagram.com/fadil.farhan_/' className="w-[25%] flex justify-center items-center opacity-100 group-hover:opacity-50 hover:!opacity-100 hover:bg-[#52a295] transition-opacity duration-200">
+            <FontAwesomeIcon icon={faInstagram} />
           </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
+          <a href='https://www.linkedin.com/in/fadhilfarhan/' className="w-[25%] flex justify-center items-center opacity-100 group-hover:opacity-50 hover:!opacity-100 hover:bg-[#52a295] transition-opacity duration-200">
+            <FontAwesomeIcon icon={faLinkedin} />
+          </a>
+          <a href='https://wa.me/6281225870739' className="w-[25%] flex justify-center items-center opacity-100 group-hover:opacity-50 hover:!opacity-100 hover:bg-[#52a295] transition-opacity duration-200">
+            <FontAwesomeIcon icon={faWhatsapp} />
+          </a>
+          <a href='https://github.com/FadhilFarhan854' className="w-[25%] flex justify-center items-center opacity-100 group-hover:opacity-50 hover:!opacity-100 hover:bg-[#52a295] transition-opacity duration-200">
+            <FontAwesomeIcon icon={faGithub} />
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
+        <p>Need a software engineer for your work or project?</p>
+        <div className='w-full flex gap-2 mt-4'>
+          <a href='https://www.linkedin.com/in/fadhilfarhan/' className="cursor-pointer relative overflow-hidden hover:scale-110 rounded-xl py-2 px-4 text-sm font-semibold text-white transition-all duration-200 ease-in-out bg-[length:200%_100%] bg-[0%_0%] hover:bg-[100%_0%] bg-gradient-to-r from-[#00b3c0] to-[#00ff48]">
+            Hire me
+          </a>
+          <a href={`/resume/Resume.pdf`} download className="cursor-pointer relative overflow-hidden hover:scale-110 rounded-xl py-2 px-4 text-sm font-semibold text-white transition-all duration-200 ease-in-out bg-[length:200%_100%] bg-[0%_0%] hover:bg-[100%_0%] bg-gradient-to-r from-[#00b3c0] to-[#00ff48]">
+            Download CV
+          </a>
+        </div>
+        
+      </div>
+    ),
+    research: (
+      <div className="p-6 text-white">
+        <h2 className="text-lg md:text-2xl font-bold mb-4">Research</h2>
+        <p className='mb-5'>I conducted a research project to develop a chatbot designed to assess user&apos;s soft skills. Initially, I utilized a pretrained LLM model from OpenAI. However, over time, I encountered an issue with inconsistent evaluation outputs generated by the chatbot. After reviewing several research papers, I discovered an alternative approach using word embeddings. I grouped relevant keywords, converted them into vectors, and then measured their similarity to the users’ responses. By applying this method, the evaluation results became 100% consistent.
+        For more details about this research, feel free to contact me via email.</p>
+        <a  href="mailto:fadhilfarhan854@gmail.com" className="cursor-pointer relative overflow-hidden hover:scale-110 rounded-xl py-2 px-4 text-sm font-semibold text-white transition-all duration-200 ease-in-out bg-[length:200%_100%] bg-[0%_0%] hover:bg-[100%_0%] bg-gradient-to-r from-[#00b3c0] to-[#00ff48]">
+            Email me
         </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
+      </div>
+    ),
+    project: (
+      <div className="p-6 text-white">
+        <h2 className="text-lg md:text-2xl font-bold mb-4">Experience</h2>
+        <p className='mb-5'>I used to join many project when i was in college. i have 1 year experience as a intern fullstack developer at CoE Smart City Telkom University. besides creating a website i also doing some research
+          about AI consistency between LLM and conventional NLP. i use that research for making a chatbot in my internship. this is also my favorite project during my college.
+          i make a chatbot to interview, score user&apos;s softskills and conclude all the chathistory. beside my internship, i also join on many project for my educational purpose. i made a web apllication such as cleaning service web, note, and much more.
+          for more detail about my experience you can download my resume bellow.
+        </p>
+        <a href={`/resume/Resume.pdf`} download className="cursor-pointer relative overflow-hidden hover:scale-110 rounded-xl py-2 px-4 text-sm font-semibold text-white transition-all duration-200 ease-in-out bg-[length:200%_100%] bg-[0%_0%] hover:bg-[100%_0%] bg-gradient-to-r from-[#00b3c0] to-[#00ff48]">
+            Download CV
         </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+    )
+  };
+  const chatbotRef = useRef<HTMLDivElement | null>(null);
+  return (
+    <div className="h-[200vh] md:h-[100vh] w-[100vw] border-2 overflow-x-hidden bg-[#22242d] ">
+        <div className="w-full h-full px-2 md:px-48 py-2 md:py-10 ">
+          <div className="w-full h-full relative flex flex-col md:flex-row">
+            <div className=" w-full md:w-[60%] h-[50%] md:h-full flex flex-col ">
+              {circles.map((circle, index) => (
+                <div 
+                  key={index}
+                  className="absolute rounded-full bg-[#ff9500] scale-50 md:scale-100 "
+                  style={{
+                    width: circle.size,
+                    height: circle.size,
+                    left: circle.left,
+                    top: circle.top,
+                    filter: `blur(${circle.blur})`,
+                    opacity: circle.opacity,
+                    background: circle.bg
+                  }}
+                />
+              ))}
+               <div className="relative w-full h-[70%] flex justify-center items-center overflow-hidden ">
+                  <img 
+                    className=" h-full scale-75 md:scale-105"
+                    src="/foto1.png" 
+                    alt="Profile"
+                    style={{
+                      maskImage: `
+                        linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%),
+                        linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)
+                      `,
+                      WebkitMaskImage: `
+                        linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%),
+                        linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%)
+                      `,
+                      maskComposite: 'source-in',
+                      WebkitMaskComposite: 'source-in'
+                    }}
+                  />
+                </div>
+
+              <div className='w-full h-[30%] text-start flex flex-col justify-center  gap-1 md:gap-3 items-start  text-white'>
+                <p className='md:text-6xl text-3xl z-10 font-bold md:hidden'>Fadhilah Muhammad Farhan</p>
+                <p className='md:text-6xl text-base z-10 font-semibold md:hidden'>Fullstack Developer</p>
+                <p className='md:text-6xl text-lg z-10 font-semibold'>Want know me more?</p>
+                <button type='button' onClick={() => chatbotRef.current?.scrollIntoView({ behavior: 'smooth' })} className="cursor-pointer relative overflow-hidden hover:scale-110 rounded-xl text-base md:text-xl py-2 px-4  font-semibold text-white transition-all duration-200 ease-in-out bg-[length:200%_100%] bg-[0%_0%] hover:bg-[100%_0%] bg-gradient-to-r from-[#00b3c0] to-[#00ff48]">
+                Talk to my AI chatbot
+                </button>
+              </div>
+          </div>
+          <div className="md:w-[40%] md:h-[100%] flex flex-col ">
+            <div className="w-full flex justify-between font-medium text-white p-5 text-base">
+              <button  onClick={() => setActiveTab('about')}  className={`pb-2 ${activeTab === 'about' ? 'border-b-2 border-white' : 'opacity-70'}`}>
+               About me
+              </button>
+              <button  onClick={() => setActiveTab('research')}  className={`pb-2 ${activeTab === 'research' ? 'border-b-2 border-white' : 'opacity-70'}`}>
+                Research
+              </button>
+              <button  onClick={() => setActiveTab('project')} className={`pb-2 ${activeTab === 'project' ? 'border-b-2 border-white' : 'opacity-70'}`}>
+                Experience
+              </button>
+            </div>
+            {/* Area konten dengan animasi */}
+            <div className="flex-1 relative  md:overflow-hidden">
+              <div className={`absolute inset-0 transition-transform duration-300 ease-in-out ${ activeTab === 'about' ? 'translate-x-0' : activeTab === 'research' ? '-translate-x-full' : '-translate-x-[200%]'}`} >       
+                {tabContents.about}
+              </div>
+              <div className={`absolute inset-0 transition-transform duration-300 ease-in-out ${ activeTab === 'about' ? 'translate-x-full' :activeTab === 'research' ? 'translate-x-0' :   '-translate-x-full' }`}>                
+                {tabContents.research}
+              </div>
+              <div className={`absolute inset-0 transition-transform duration-300 ease-in-out ${ activeTab === 'about' ? 'translate-x-[200%]' : activeTab === 'research' ? 'translate-x-full' : 'translate-x-0' }`}>
+                {tabContents.project}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+    {/* Section 2 */}
+    <Skills/>
+    {/* Section 3 */}
+    <div ref={chatbotRef}>
+      <ChatbotUI/>
     </div>
+    <></>
+  </div>
   );
 }
