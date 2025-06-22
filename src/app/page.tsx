@@ -97,7 +97,7 @@ export default function Home() {
   };
   const chatbotRef = useRef<HTMLDivElement | null>(null);
   return (
-    <div className="h-[200vh] md:h-[100vh] w-[100vw] border-2 overflow-x-hidden bg-[#22242d] ">
+    <div className="h-[200vh] md:h-[100vh] w-[100vw] overflow-x-hidden bg-[#22242d] ">
         <div className="w-full h-full px-2 md:px-48 py-2 md:py-10 ">
           <div className="w-full h-full relative flex flex-col md:flex-row">
             <div className=" w-full md:w-[60%] h-[50%] md:h-full flex flex-col ">
